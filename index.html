@@ -11,7 +11,7 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --green-dark: #07553B;
+    --green-dark: #0a5c3a;
     --green-mid: #0d7a4e;
     --green-light: #6abf3e;
     --white: #ffffff;
@@ -511,17 +511,19 @@
 <!-- NAV -->
 <nav>
   <ul class="nav-links">
-    <li><a href="#">About Us</a></li>
-    <li><a href="#">Memberships</a></li>
-    <li><a href="#">Facilities</a></li>
-    <li><a href="#">FAQs</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="memberships.html">Memberships</a></li>
+    <li><a href="facilities.html">Facilities</a></li>
+    <li><a href="faqs.html">FAQs</a></li>
   </ul>
-  <a class="nav-login" href="#">Members Login</a>
+  <a class="nav-login" href="#" style="cursor:not-allowed; position:relative;">Members Login
+    <span style="display:none; position:absolute; top:calc(100% + 8px); right:0; background:var(--green-dark); color:white; font-size:0.65rem; letter-spacing:0.08em; white-space:nowrap; padding:0.4rem 0.75rem; border-radius:3px; font-weight:400;" id="loginTip">Member portal coming soon</span>
+  </a>
 </nav>
 
 <!-- LOGO HEADER -->
 <div class="logo-header">
-  <img src="Logo.png" alt="Masters Golf Collective" style="max-width: 560px; width: 90%; height: auto; display: block;">
+  <a href="index.html"><img src="Logo.png" alt="Masters Golf Collective" style="max-width: 560px; width: 90%; height: auto; display: block;"></a>
 </div>
 
 <!-- COMING SOON BAND -->
@@ -695,6 +697,12 @@
   document.getElementById('emailInput').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') handleSubmit();
   });
+  var loginBtn = document.querySelector('.nav-login');
+  var loginTip = document.getElementById('loginTip');
+  if (loginBtn && loginTip) {
+    loginBtn.addEventListener('mouseenter', function() { loginTip.style.display = 'block'; });
+    loginBtn.addEventListener('mouseleave', function() { loginTip.style.display = 'none'; });
+  }
 </script>
 </body>
 </html>
