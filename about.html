@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masters Golf Collective — About Us</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green-dark: #0a5c3a;
+    --green-mid: #0d7a4e;
+    --green-light: #6abf3e;
+    --white: #ffffff;
+    --off-white: #f7f5f0;
+    --gold: #c8a96e;
+    --text-dark: #1a1a1a;
+  }
+  html, body { font-family: 'Montserrat', sans-serif; background: var(--off-white); color: var(--text-dark); overflow-x: hidden; }
+
+  nav {
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 56px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a.active { opacity: 1; color: var(--green-dark); border-bottom: 2px solid var(--green-light); padding-bottom: 2px; }
+  .nav-login {
+    background: var(--green-light);
+    color: var(--green-dark) !important;
+    opacity: 1 !important;
+    font-weight: 700 !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: not-allowed;
+    position: relative;
+  }
+  .nav-login:hover .login-tooltip { display: block; }
+  .login-tooltip {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: var(--green-dark);
+    color: white;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    padding: 0.4rem 0.75rem;
+    border-radius: 3px;
+    font-weight: 400;
+  }
+  .logo-header {
+    background: var(--green-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 2rem 1.75rem;
+  }
+  .logo-header img { max-width: 520px; width: 90%; height: auto; display: block; }
+
+  .page-hero {
+    background: var(--green-dark);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 5rem 2rem 6rem;
+    text-align: center;
+  }
+  .hero-inner { max-width: 580px; margin: 0 auto; }
+  .hero-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 2rem;
+    opacity: 0.25;
+  }
+  .hero-eyebrow {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 1rem;
+  }
+  .hero-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .hero-heading em { font-style: italic; color: var(--green-light); }
+  .hero-divider { width: 50px; height: 1px; background: var(--gold); margin: 1.5rem auto; }
+  .hero-sub {
+    font-size: 0.82rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.65);
+    max-width: 44ch;
+    margin: 0 auto;
+  }
+
+  .coming-tag {
+    display: inline-block;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    border-radius: 2px;
+    margin-top: 2rem;
+  }
+
+  .email-section {
+    background: var(--off-white);
+    padding: 3rem 2rem 3.5rem;
+    text-align: center;
+    border-top: 3px solid var(--green-light);
+  }
+  .email-inner { max-width: 500px; margin: 0 auto; }
+  .email-eyebrow {
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.5em;
+    text-transform: uppercase; color: var(--green-dark); opacity: 0.5; margin-bottom: 0.6rem;
+  }
+  .email-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 400; color: var(--green-dark); margin-bottom: 0.5rem;
+  }
+  .email-sub {
+    font-size: 0.75rem; font-weight: 300; color: var(--text-dark);
+    opacity: 0.6; margin-bottom: 1.75rem; letter-spacing: 0.04em;
+  }
+  .email-form { display: flex; max-width: 420px; margin: 0 auto; }
+  .email-form input[type="email"] {
+    flex: 1;
+    border: 1.5px solid rgba(10,92,58,0.25); border-right: none;
+    border-radius: 3px 0 0 3px; background: var(--white);
+    color: var(--text-dark); font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem; font-weight: 300; padding: 0.75rem 1rem; outline: none;
+    transition: border-color 0.2s;
+  }
+  .email-form input::placeholder { color: rgba(0,0,0,0.3); }
+  .email-form input:focus { border-color: var(--green-mid); }
+  .email-form button {
+    background: var(--green-dark); border: 1.5px solid var(--green-dark);
+    border-radius: 0 3px 3px 0; color: var(--white);
+    font-family: 'Montserrat', sans-serif; font-size: 0.65rem;
+    font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 0.75rem 1.25rem; cursor: pointer; white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .email-form button:hover { background: var(--green-mid); border-color: var(--green-mid); }
+  .success-msg { display: none; font-size: 0.75rem; color: var(--green-dark); font-weight: 500; margin-top: 1rem; }
+
+  footer {
+    background: #071f14;
+    padding: 1.5rem 2rem;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-copy { font-size: 0.62rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); }
+  .social-link {
+    display: flex; align-items: center; gap: 0.5rem;
+    text-decoration: none; color: rgba(255,255,255,0.4);
+    font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.2s;
+  }
+  .social-link:hover { color: white; }
+  .social-link svg { width: 15px; height: 15px; }
+
+  @media (max-width: 600px) {
+    .nav-links { gap: 1.2rem; }
+    .nav-links li:nth-child(3), .nav-links li:nth-child(4) { display: none; }
+    .email-form { flex-direction: column; }
+    .email-form input { border-right: 1.5px solid rgba(10,92,58,0.25); border-bottom: none; border-radius: 3px 3px 0 0; }
+    .email-form button { border-radius: 0 0 3px 3px; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <ul class="nav-links">
+    <li><a href="about.html" class="active">About Us</a></li>
+    <li><a href="memberships.html" >Memberships</a></li>
+    <li><a href="facilities.html" >Facilities</a></li>
+    <li><a href="faqs.html" >FAQs</a></li>
+  </ul>
+  <a class="nav-login" href="#">Members Login
+    <span class="login-tooltip">Member portal coming soon</span>
+  </a>
+</nav>
+
+<div class="logo-header">
+  <a href="index.html"><img src="Logo.png" alt="Masters Golf Collective"></a>
+</div>
+
+<div class="page-hero">
+  <div class="hero-inner">
+    <svg class="hero-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    <p class="hero-eyebrow">Coming Soon</p>
+    <h1 class="hero-heading">Our <em>Story</em></h1>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">We're building something different. Masters Golf Collective is a members-only space created for golfers who are serious about their game and want a facility that matches that ambition. More details coming soon.</p>
+    <span class="coming-tag">Opening Winter 2026</span>
+  </div>
+</div>
+
+<div class="email-section">
+  <div class="email-inner">
+    <p class="email-eyebrow">Stay in the loop</p>
+    <h2 class="email-heading">Be the first to know</h2>
+    <p class="email-sub">Register your interest and we'll notify you when memberships open.</p>
+    <div class="email-form" id="emailForm">
+      <input type="email" id="emailInput" placeholder="your@email.com" autocomplete="email">
+      <button onclick="handleSubmit()">Notify Me</button>
+    </div>
+    <p class="success-msg" id="successMsg">✦ &nbsp;You're on the list. We'll be in touch.</p>
+  </div>
+</div>
+
+<footer>
+  <p class="footer-copy">© 2026 Masters Golf Collective. All rights reserved.</p>
+  <a class="social-link" href="https://www.instagram.com/mastersgolfcollective/" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/>
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+    </svg>
+    @mastersgolfcollective
+  </a>
+</footer>
+
+<script>
+  function handleSubmit() {
+    var input = document.getElementById('emailInput');
+    var form  = document.getElementById('emailForm');
+    var msg   = document.getElementById('successMsg');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim())) {
+      input.style.borderColor = '#e24b4a'; input.focus(); return;
+    }
+    form.style.display = 'none'; msg.style.display = 'block';
+  }
+  document.getElementById('emailInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') handleSubmit();
+  });
+</script>
+</body>
+</html>
