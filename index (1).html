@@ -6,7 +6,7 @@
 <title>Masters Golf Collective — Coming Soon</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -14,431 +14,694 @@
     --green-dark: #0a5c3a;
     --green-mid: #0d7a4e;
     --green-light: #6abf3e;
-    --white: #f7f5f0;
-    --off-white: #e8e4dc;
+    --white: #ffffff;
+    --off-white: #f7f5f0;
     --gold: #c8a96e;
-    --text-muted: rgba(247,245,240,0.55);
+    --text-dark: #1a1a1a;
+    --text-muted: rgba(255,255,255,0.6);
   }
 
   html, body {
-    height: 100%;
-    background: var(--green-dark);
-    color: var(--white);
     font-family: 'Montserrat', sans-serif;
+    background: var(--off-white);
+    color: var(--text-dark);
     overflow-x: hidden;
   }
 
-  /* Texture overlay */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      radial-gradient(ellipse 80% 60% at 70% 20%, rgba(106,191,62,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 80% at 10% 80%, rgba(13,122,78,0.2) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Subtle grid lines */
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(247,245,240,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(247,245,240,0.025) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .page {
-    position: relative;
-    z-index: 1;
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-
-  /* ── HEADER ── */
-  header {
-    padding: 2.5rem 0 0;
+  /* ── NAV ── */
+  nav {
+    background: var(--white);
     display: flex;
     align-items: center;
-    gap: 1rem;
-    animation: fadeDown 0.9s ease both;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 56px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
 
-  .logo-mark {
-    width: 52px;
-    height: 52px;
-    flex-shrink: 0;
-  }
-
-  .brand-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
-    font-weight: 400;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--off-white);
-    line-height: 1.2;
-  }
-
-  .brand-name span {
-    display: block;
-    font-size: 0.65rem;
-    letter-spacing: 0.4em;
-    color: var(--text-muted);
-    font-weight: 300;
-    margin-top: 2px;
-  }
-
-  /* ── MAIN ── */
-  main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 3rem 0 2rem;
-  }
-
-  .eyebrow {
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.5em;
-    text-transform: uppercase;
-    color: var(--green-light);
-    margin-bottom: 1.5rem;
-    animation: fadeUp 0.9s 0.15s ease both;
-  }
-
-  .headline {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.2rem, 7vw, 6.5rem);
-    font-weight: 300;
-    line-height: 1.0;
-    color: var(--white);
-    max-width: 14ch;
-    animation: fadeUp 0.9s 0.25s ease both;
-  }
-
-  .headline em {
-    font-style: italic;
-    color: var(--green-light);
-  }
-
-  .divider {
-    width: 60px;
-    height: 1px;
-    background: var(--gold);
-    margin: 2rem 0;
-    animation: fadeUp 0.9s 0.35s ease both;
-  }
-
-  .tagline {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-    font-weight: 300;
-    font-style: italic;
-    color: var(--off-white);
-    margin-bottom: 0.5rem;
-    animation: fadeUp 0.9s 0.4s ease both;
-  }
-
-  .description {
-    font-size: 0.8rem;
-    font-weight: 300;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    max-width: 42ch;
-    line-height: 1.8;
-    animation: fadeUp 0.9s 0.45s ease both;
-  }
-
-  /* ── LAUNCH ── */
-  .launch-block {
-    margin-top: 3rem;
+  .nav-links {
     display: flex;
     align-items: center;
     gap: 2.5rem;
-    flex-wrap: wrap;
-    animation: fadeUp 0.9s 0.5s ease both;
+    list-style: none;
   }
 
-  .launch-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.45em;
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 0.3rem;
+    color: var(--text-dark);
+    opacity: 0.7;
+    transition: opacity 0.2s;
   }
 
-  .launch-date {
+  .nav-links a:hover { opacity: 1; }
+
+  .nav-login {
+    background: var(--green-light);
+    color: var(--green-dark) !important;
+    opacity: 1 !important;
+    font-weight: 700 !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+
+  .nav-login:hover { background: #7dcf4a; }
+
+  /* ── LOGO HEADER ── */
+  .logo-header {
+    background: var(--green-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 2rem 1.75rem;
+  }
+
+  .logo-header img {
+    max-width: 520px;
+    width: 90%;
+    height: auto;
+  }
+
+  /* Logo fallback SVG (shown when no image) */
+  .logo-svg-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    max-width: 560px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .logo-icon {
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+  }
+
+  .logo-text-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logo-masters {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem;
-    font-weight: 400;
-    color: var(--gold);
-    letter-spacing: 0.05em;
+    font-size: clamp(2.8rem, 8vw, 4.8rem);
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.08em;
+    line-height: 1;
   }
 
-  .launch-divider {
-    width: 1px;
-    height: 40px;
-    background: rgba(247,245,240,0.15);
+  .logo-sub-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    justify-content: center;
   }
 
-  /* ── EMAIL FORM ── */
-  .notify-block {
-    margin-top: 3rem;
-    animation: fadeUp 0.9s 0.6s ease both;
+  .logo-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--gold);
   }
 
-  .notify-block .label {
-    font-size: 0.6rem;
+  .logo-collective {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.55rem, 1.5vw, 0.78rem);
+    font-weight: 500;
     letter-spacing: 0.45em;
+    color: var(--gold);
     text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 0.85rem;
+    white-space: nowrap;
+  }
+
+  /* ── CAROUSEL ── */
+  .carousel-wrap {
+    position: relative;
+    background: #111;
+    overflow: hidden;
+    height: clamp(240px, 45vw, 520px);
+  }
+
+  .carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .carousel-slide {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Placeholder slide backgrounds */
+  .carousel-slide:nth-child(1) { background: linear-gradient(135deg, #1a3a2a 0%, #0d5c35 50%, #1a4a2a 100%); }
+  .carousel-slide:nth-child(2) { background: linear-gradient(135deg, #0d3320 0%, #1a5c3a 50%, #0a4028 100%); }
+  .carousel-slide:nth-child(3) { background: linear-gradient(135deg, #162d1e 0%, #2a6644 50%, #112416 100%); }
+  .carousel-slide:nth-child(4) { background: linear-gradient(135deg, #0a2818 0%, #1a5035 50%, #0d3a22 100%); }
+
+  .slide-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: rgba(255,255,255,0.25);
+  }
+
+  .slide-placeholder svg {
+    width: 56px;
+    height: 56px;
+    opacity: 0.3;
+  }
+
+  .slide-placeholder p {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
+  /* Slide label overlay */
+  .slide-label {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 2rem;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+
+  /* Carousel dots */
+  .carousel-dots {
+    position: absolute;
+    bottom: 1.25rem;
+    right: 1.5rem;
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    border: none;
+    padding: 0;
+  }
+
+  .dot.active {
+    background: var(--white);
+    transform: scale(1.2);
+  }
+
+  /* Carousel arrows */
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 10;
+  }
+
+  .carousel-btn:hover { background: rgba(0,0,0,0.55); }
+  .carousel-btn.prev { left: 1rem; }
+  .carousel-btn.next { right: 1rem; }
+
+  .carousel-btn svg { width: 18px; height: 18px; }
+
+  /* ── VENUE SELECTOR ── */
+  .venue-bar {
+    background: var(--green-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    gap: 1.25rem;
+    border-bottom: 3px solid var(--green-light);
+  }
+
+  .venue-bar label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--white);
+    white-space: nowrap;
+  }
+
+  .venue-select {
+    appearance: none;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 4px;
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    padding: 0.6rem 2.5rem 0.6rem 1rem;
+    cursor: pointer;
+    min-width: 220px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    transition: border-color 0.2s;
+  }
+
+  .venue-select:focus {
+    outline: none;
+    border-color: var(--green-light);
+  }
+
+  .venue-select option { background: var(--green-dark); color: var(--white); }
+
+  /* ── COMING SOON BAND ── */
+  .coming-soon-band {
+    background: var(--green-light);
+    text-align: center;
+    padding: 0.6rem 1rem;
+  }
+
+  .coming-soon-band p {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--green-dark);
+  }
+
+  /* ── INFO SECTION ── */
+  .info-section {
+    background: var(--green-dark);
+    padding: 3.5rem 2rem 4rem;
+    text-align: center;
+  }
+
+  .info-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .info-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.3rem, 3vw, 1.75rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--green-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+  }
+
+  .info-divider {
+    width: 50px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 1.75rem;
+  }
+
+  .info-body {
+    font-size: 0.82rem;
+    font-weight: 300;
+    line-height: 1.95;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 1.25rem;
+  }
+
+  .info-highlight {
+    font-size: 0.82rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--green-light);
+    line-height: 1.9;
+  }
+
+  /* ── EMAIL CAPTURE ── */
+  .email-section {
+    background: var(--off-white);
+    padding: 3rem 2rem 3.5rem;
+    text-align: center;
+    border-top: 3px solid var(--green-light);
+  }
+
+  .email-inner {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .email-eyebrow {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--green-dark);
+    opacity: 0.5;
+    margin-bottom: 0.6rem;
+  }
+
+  .email-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 400;
+    color: var(--green-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .email-sub {
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--text-dark);
+    opacity: 0.6;
+    margin-bottom: 1.75rem;
+    letter-spacing: 0.04em;
   }
 
   .email-form {
     display: flex;
     gap: 0;
-    max-width: 440px;
+    max-width: 420px;
+    margin: 0 auto;
   }
 
   .email-form input[type="email"] {
     flex: 1;
-    background: rgba(247,245,240,0.07);
-    border: 1px solid rgba(247,245,240,0.18);
+    border: 1.5px solid rgba(10,92,58,0.25);
     border-right: none;
-    border-radius: 2px 0 0 2px;
-    color: var(--white);
+    border-radius: 3px 0 0 3px;
+    background: var(--white);
+    color: var(--text-dark);
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     font-weight: 300;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
     padding: 0.75rem 1rem;
     outline: none;
-    transition: border-color 0.2s, background 0.2s;
+    transition: border-color 0.2s;
   }
 
-  .email-form input[type="email"]::placeholder {
-    color: rgba(247,245,240,0.3);
-  }
-
-  .email-form input[type="email"]:focus {
-    background: rgba(247,245,240,0.1);
-    border-color: var(--green-light);
-  }
+  .email-form input[type="email"]::placeholder { color: rgba(0,0,0,0.3); }
+  .email-form input[type="email"]:focus { border-color: var(--green-mid); }
 
   .email-form button {
-    background: var(--green-light);
-    border: 1px solid var(--green-light);
-    border-radius: 0 2px 2px 0;
-    color: var(--green-dark);
+    background: var(--green-dark);
+    border: 1.5px solid var(--green-dark);
+    border-radius: 0 3px 3px 0;
+    color: var(--white);
     font-family: 'Montserrat', sans-serif;
     font-size: 0.65rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    padding: 0.75rem 1.4rem;
+    padding: 0.75rem 1.25rem;
     cursor: pointer;
-    transition: background 0.2s, border-color 0.2s;
+    transition: background 0.2s;
     white-space: nowrap;
   }
 
-  .email-form button:hover {
-    background: #7dcf4a;
-    border-color: #7dcf4a;
-  }
+  .email-form button:hover { background: var(--green-mid); border-color: var(--green-mid); }
 
   .success-msg {
     display: none;
     font-size: 0.75rem;
     letter-spacing: 0.08em;
-    color: var(--green-light);
-    margin-top: 0.75rem;
+    color: var(--green-dark);
+    font-weight: 500;
+    margin-top: 1rem;
   }
 
   /* ── FOOTER ── */
   footer {
-    padding: 2rem 0 2.5rem;
+    background: #071f14;
+    padding: 1.5rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 1rem;
-    border-top: 1px solid rgba(247,245,240,0.08);
-    animation: fadeUp 0.9s 0.7s ease both;
   }
 
   .footer-copy {
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     letter-spacing: 0.1em;
-    color: var(--text-muted);
+    color: rgba(255,255,255,0.35);
   }
 
   .social-link {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.5rem;
     text-decoration: none;
-    color: var(--text-muted);
-    font-size: 0.65rem;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.62rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     transition: color 0.2s;
   }
 
-  .social-link:hover {
-    color: var(--white);
-  }
-
-  .social-link svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  /* ── DECORATIVE GOLF BALL ── */
-  .deco-ball {
-    position: fixed;
-    bottom: 8vh;
-    right: 6vw;
-    width: clamp(120px, 18vw, 220px);
-    opacity: 0.06;
-    pointer-events: none;
-    animation: float 8s ease-in-out infinite;
-    z-index: 0;
-  }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(-18px); }
-  }
+  .social-link:hover { color: var(--white); }
+  .social-link svg { width: 15px; height: 15px; }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 600px) {
-    .launch-divider { display: none; }
+    .nav-links { gap: 1.2rem; }
+    .nav-links li:nth-child(3), .nav-links li:nth-child(4) { display: none; }
     .email-form { flex-direction: column; }
     .email-form input[type="email"] {
-      border-right: 1px solid rgba(247,245,240,0.18);
+      border-right: 1.5px solid rgba(10,92,58,0.25);
       border-bottom: none;
-      border-radius: 2px 2px 0 0;
+      border-radius: 3px 3px 0 0;
     }
-    .email-form button {
-      border-radius: 0 0 2px 2px;
-    }
-    footer { flex-direction: column; gap: 0.75rem; }
+    .email-form button { border-radius: 0 0 3px 3px; }
+    footer { flex-direction: column; text-align: center; }
   }
 </style>
 </head>
 <body>
 
-<!-- Decorative golf ball -->
-<svg class="deco-ball" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="100" cy="100" r="98" stroke="white" stroke-width="2"/>
-  <ellipse cx="100" cy="100" rx="40" ry="98" stroke="white" stroke-width="1.5"/>
-  <ellipse cx="100" cy="100" rx="80" ry="98" stroke="white" stroke-width="1"/>
-  <line x1="2" y1="100" x2="198" y2="100" stroke="white" stroke-width="1.5"/>
-  <line x1="100" y1="2" x2="100" y2="198" stroke="white" stroke-width="1.5"/>
-</svg>
+<!-- NAV -->
+<nav>
+  <ul class="nav-links">
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">Memberships</a></li>
+    <li><a href="#">Facilities</a></li>
+    <li><a href="#">FAQs</a></li>
+  </ul>
+  <a class="nav-login" href="#">Members Login</a>
+</nav>
 
-<div class="page">
-
-  <header>
-    <!-- Recreated logo mark in SVG matching the brand -->
-    <svg class="logo-mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100" height="100" fill="#0a5c3a"/>
-      <!-- Golf club shaft (the diagonal of the M) -->
-      <path d="M18 75 L62 18" stroke="#6abf3e" stroke-width="7" stroke-linecap="round"/>
-      <!-- Golf club head -->
-      <path d="M12 78 Q10 85 20 83 Q28 81 18 75 Z" fill="#6abf3e"/>
-      <!-- Golf ball -->
-      <circle cx="30" cy="60" r="8" fill="white"/>
-      <!-- M letterform (right portion) -->
-      <path d="M50 72 L50 20 L62 20 L62 72" fill="#6abf3e"/>
-      <path d="M62 72 L62 38 L75 52 L75 72" fill="#6abf3e"/>
-      <path d="M75 72 L75 20 L85 20 L85 72" fill="#6abf3e"/>
+<!-- LOGO HEADER -->
+<div class="logo-header">
+  <div class="logo-svg-wrap">
+    <!-- Logo mark -->
+    <svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 78 Q10 88 22 85 Q32 82 20 76 Z" fill="#6abf3e"/>
+      <path d="M20 76 L65 16" stroke="#6abf3e" stroke-width="7.5" stroke-linecap="round"/>
+      <circle cx="31" cy="61" r="9" fill="white"/>
+      <path d="M52 74 L52 18 L64 18 L64 74" fill="#6abf3e"/>
+      <path d="M64 74 L64 36 L76 50 L76 74" fill="#6abf3e"/>
+      <path d="M76 74 L76 18 L86 18 L86 74" fill="#6abf3e"/>
     </svg>
-
-    <div class="brand-name">
-      Masters Golf Collective
-      <span>Members Only</span>
-    </div>
-  </header>
-
-  <main>
-    <p class="eyebrow">Opening Winter 2026</p>
-
-    <h1 class="headline">
-      Where<br>Performance<br><em>Meets</em><br>Purpose.
-    </h1>
-
-    <div class="divider"></div>
-
-    <p class="tagline">Driven by Performance. United by Golf.</p>
-    <p class="description">Members only golf simulation facility &amp; fitness suite. A private sanctuary for those who take their game seriously.</p>
-
-    <div class="launch-block">
-      <div>
-        <p class="launch-label">Opening</p>
-        <p class="launch-date">Winter 2026</p>
-      </div>
-      <div class="launch-divider"></div>
-      <div>
-        <p class="launch-label">Membership</p>
-        <p class="launch-date">By Application</p>
+    <!-- Wordmark -->
+    <div class="logo-text-block">
+      <div class="logo-masters">MASTERS</div>
+      <div class="logo-sub-row">
+        <div class="logo-rule"></div>
+        <div class="logo-collective">Golf Collective</div>
+        <div class="logo-rule"></div>
       </div>
     </div>
-
-    <div class="notify-block">
-      <p class="label">Register your interest</p>
-      <div class="email-form" id="emailForm">
-        <input type="email" id="emailInput" placeholder="your@email.com" autocomplete="email">
-        <button onclick="handleSubmit()">Notify Me</button>
-      </div>
-      <p class="success-msg" id="successMsg">✦ &nbsp;You're on the list. We'll be in touch.</p>
-    </div>
-  </main>
-
-  <footer>
-    <p class="footer-copy">© 2026 Masters Golf Collective. All rights reserved.</p>
-    <a class="social-link" href="https://www.instagram.com/mastersgolfcollective/" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-        <circle cx="12" cy="12" r="4"/>
-        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-      </svg>
-      @mastersgolfcollective
-    </a>
-  </footer>
-
+  </div>
 </div>
 
+<!-- COMING SOON BAND -->
+<div class="coming-soon-band">
+  <p>Opening Winter 2026 — Register Your Interest Below</p>
+</div>
+
+<!-- CAROUSEL -->
+<div class="carousel-wrap">
+  <div class="carousel-track" id="carouselTrack">
+
+    <div class="carousel-slide">
+      <div class="slide-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <p>Facility Photo 1</p>
+      </div>
+      <div class="slide-label">Golf Simulation Suite</div>
+    </div>
+
+    <div class="carousel-slide">
+      <div class="slide-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <p>Facility Photo 2</p>
+      </div>
+      <div class="slide-label">Fitness Suite</div>
+    </div>
+
+    <div class="carousel-slide">
+      <div class="slide-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <p>Facility Photo 3</p>
+      </div>
+      <div class="slide-label">Members Lounge</div>
+    </div>
+
+    <div class="carousel-slide">
+      <div class="slide-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <p>Facility Photo 4</p>
+      </div>
+      <div class="slide-label">The Collective</div>
+    </div>
+
+  </div>
+
+  <button class="carousel-btn prev" onclick="moveCarousel(-1)" aria-label="Previous slide">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <button class="carousel-btn next" onclick="moveCarousel(1)" aria-label="Next slide">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+
+  <div class="carousel-dots" id="carouselDots">
+    <button class="dot active" onclick="goToSlide(0)" aria-label="Slide 1"></button>
+    <button class="dot" onclick="goToSlide(1)" aria-label="Slide 2"></button>
+    <button class="dot" onclick="goToSlide(2)" aria-label="Slide 3"></button>
+    <button class="dot" onclick="goToSlide(3)" aria-label="Slide 4"></button>
+  </div>
+</div>
+
+<!-- VENUE SELECTOR -->
+<div class="venue-bar">
+  <label for="venueSelect">Select your venue</label>
+  <select class="venue-select" id="venueSelect">
+    <option value="">— Choose a location —</option>
+    <option value="location1">Masters Golf Collective — [Location Name]</option>
+  </select>
+</div>
+
+<!-- INFO SECTION -->
+<div class="info-section">
+  <div class="info-inner">
+    <p class="info-tagline">A members-only space where golfers come to enjoy the game, keep fit, and feel at home.</p>
+    <div class="info-divider"></div>
+    <p class="info-body">
+      We're not a corporate gym or a stuffy golf club. We're a small, friendly facility built around two things: great golf simulators and a decent gym. Simple as that. Whether you're sneaking in a quick session before work, grinding away at your swing on a rainy afternoon, or just getting some reps in, this is your space to use however works best for you.
+    </p>
+    <p class="info-body">
+      We keep our membership deliberately small. That means you'll always get your slot, the gym won't be rammed, and over time you'll get to know the faces around you. It's that kind of place.
+    </p>
+    <p class="info-highlight">
+      Getting in is as easy as it gets — no fuss, no front desk, just keyless access so you can show up whenever suits you, any time from 5am to midnight.
+    </p>
+  </div>
+</div>
+
+<!-- EMAIL CAPTURE -->
+<div class="email-section">
+  <div class="email-inner">
+    <p class="email-eyebrow">Opening Winter 2026</p>
+    <h2 class="email-heading">Be the first to know</h2>
+    <p class="email-sub">Register your interest and we'll notify you when memberships open.</p>
+    <div class="email-form" id="emailForm">
+      <input type="email" id="emailInput" placeholder="your@email.com" autocomplete="email">
+      <button onclick="handleSubmit()">Notify Me</button>
+    </div>
+    <p class="success-msg" id="successMsg">✦ &nbsp;You're on the list. We'll be in touch.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-copy">© 2026 Masters Golf Collective. All rights reserved.</p>
+  <a class="social-link" href="https://www.instagram.com/mastersgolfcollective/" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+      <circle cx="12" cy="12" r="4"/>
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+    </svg>
+    @mastersgolfcollective
+  </a>
+</footer>
+
 <script>
+  var current = 0;
+  var total = 4;
+  var autoplay;
+
+  function updateCarousel() {
+    document.getElementById('carouselTrack').style.transform = 'translateX(-' + (current * 100) + '%)';
+    var dots = document.querySelectorAll('.dot');
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+  }
+
+  function moveCarousel(dir) {
+    current = (current + dir + total) % total;
+    updateCarousel();
+    resetAutoplay();
+  }
+
+  function goToSlide(i) {
+    current = i;
+    updateCarousel();
+    resetAutoplay();
+  }
+
+  function resetAutoplay() {
+    clearInterval(autoplay);
+    autoplay = setInterval(function() { moveCarousel(1); }, 5000);
+  }
+
+  resetAutoplay();
+
   function handleSubmit() {
     var input = document.getElementById('emailInput');
     var form  = document.getElementById('emailForm');
     var msg   = document.getElementById('successMsg');
-    var email = input.value.trim();
     var re    = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!re.test(email)) {
+    if (!re.test(input.value.trim())) {
       input.style.borderColor = '#e24b4a';
       input.focus();
       return;
